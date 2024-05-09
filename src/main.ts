@@ -4,15 +4,21 @@ import * as dotenv from "dotenv";
 
 import logger from "./utils/Logger";
 import DBconnect from "./utils/DBconnect";
-const port = 8080;
-
+import router from "./router";
 dotenv.config();
+
+const port = 8080;
 
 export const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+
+/**
+ * base url (version 1)
+ */
+app.use("/api/v1", router());
 
 /**
  * server run at port 8080
