@@ -2,6 +2,7 @@ import express, { Response } from "express";
 
 import authRoute from "./authRoute";
 import petRoute from "./petRoute";
+import userRoute from "./userRoute";
 
 const router = express.Router();
 export default (): express.Router => {
@@ -21,6 +22,11 @@ export default (): express.Router => {
    * dog relate route
    */
   petRoute(router);
+
+  /**
+   * user route
+   */
+  userRoute(router);
 
   return router;
 };
