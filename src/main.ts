@@ -5,6 +5,7 @@ import * as dotenv from "dotenv";
 import logger from "./utils/Logger";
 import DBconnect from "./utils/DBconnect";
 import router from "./router";
+import swaggerDocs from "./utils/Swagger";
 dotenv.config();
 
 const port = 8080;
@@ -28,4 +29,5 @@ app.listen(port, async () => {
   logger.info("Server is running at http://localhost:8080/");
   // mongoDB connect
   await DBconnect();
+  swaggerDocs(app, 8080);
 });
