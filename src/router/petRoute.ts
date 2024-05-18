@@ -134,7 +134,7 @@ export default (router: express.Router) => {
    *      500:
    *        description: System error
    */
-  router.post("/dog", upload.single("dogPhoto"), authorization, createNewDog);
+  router.post("/dog", upload.single("dogImage"), authorization, createNewDog);
 
   /**
    * @openapi
@@ -219,7 +219,7 @@ export default (router: express.Router) => {
    */
   router.put(
     "/dog/:id",
-    upload.single("dogPhoto"),
+    upload.single("dogImage"),
     authorization,
     updateDogRecord
   );

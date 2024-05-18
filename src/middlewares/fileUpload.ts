@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     const fileExtension = path.extname(file.originalname);
     const uniqueSuffix = Date.now() + "-" + uuidv4();
     const filename = uniqueSuffix + fileExtension;
-    req.body.petImage = filename;
+    req.body.dogImage = filename;
     cb(null, uniqueSuffix + fileExtension);
   },
 });

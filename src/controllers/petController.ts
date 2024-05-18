@@ -37,7 +37,7 @@ export const getDogList = async (req: Request, res: Response) => {
 
 export const createNewDog = async (req: Request, res: Response) => {
   try {
-    const { name, description, age, location, color, breed, petImage } =
+    const { name, description, age, location, color, breed, dogImage } =
       req.body;
     const user = req.body.user;
 
@@ -48,7 +48,7 @@ export const createNewDog = async (req: Request, res: Response) => {
       location,
       color,
       breed,
-      petImage,
+      dogImage,
       handleBy: user?._id,
     });
 
@@ -83,7 +83,7 @@ export const getDogDetail = async (req: Request, res: Response) => {
 export const updateDogRecord = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
-    const { name, description, age, location, color, breed, petImage } =
+    const { name, description, age, location, color, breed, dogImage } =
       req.body;
 
     const pet = await getDogById(id);
@@ -95,7 +95,7 @@ export const updateDogRecord = async (req: Request, res: Response) => {
     if (location) pet.location = location;
     if (color) pet.color = color;
     if (breed) pet.breed = breed;
-    if (petImage) pet.dogImage = petImage;
+    if (dogImage) pet.dogImage = dogImage;
 
     await pet.save();
     return res.status(200).json({ success: true, pet });
