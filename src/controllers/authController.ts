@@ -68,3 +68,13 @@ export const login = async (req: Request, res: Response) => {
     return res.sendStatus(500);
   }
 };
+
+export const validateUser = async (req: Request, res: Response) => {
+  try {
+    const user = req.body.user;
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    logger.error(error, "validate user error: ");
+    return res.sendStatus(500);
+  }
+};

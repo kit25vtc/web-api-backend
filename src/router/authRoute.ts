@@ -1,6 +1,7 @@
 import express from "express";
 
-import { login, signUp } from "../controllers/authController";
+import { login, signUp, validateUser } from "../controllers/authController";
+import { authorization } from "../middlewares/authorization";
 
 export default (router: express.Router) => {
   /**
@@ -121,4 +122,6 @@ export default (router: express.Router) => {
    *        description: System error
    */
   router.post("/auth/sign_in", login);
+
+  router.get("/auth/me", authorization, validateUser);
 };
