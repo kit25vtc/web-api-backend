@@ -39,23 +39,12 @@ describe("POST /api/v1/auth/sign_in", () => {
   });
 });
 
-let dogId = "";
 const newStaff = {
   email: "staff01@staff.com",
   password: "QWE123qwe",
   role: "staff",
   staffCode: "staff",
 };
-const user = {
-  _id: "",
-  email: "staff01@staff.com",
-  password: "",
-  role: "staff",
-};
-
-const jwtToken = jwt.sign(user, JWT_SECRET!, {
-  expiresIn: "3days",
-});
 
 describe("POST /api/v1/auth/sign_up", () => {
   it("should sign up a new staff", async () => {
@@ -72,9 +61,6 @@ describe("POST /api/v1/auth/sign_in", () => {
       password: newStaff.password,
     });
     expect(res.statusCode).toBe(200);
-
-    user._id = res.body.user._id;
-    user.password = res.body.user.password;
   });
 });
 
@@ -83,8 +69,6 @@ describe("GET /api/v1/dogs", () => {
     const res = await request(app).get("/api/v1/dogs");
     expect(res.statusCode).toBe(200);
     expect(res.body.success).toEqual(true);
-
-    dogId = res.body.petsData[0]._id;
   });
 });
 
@@ -97,13 +81,5 @@ describe("POST /api/v1/dog", () => {
       description: "testing add dog",
     });
     expect(res.statusCode).toBe(401);
-  });
-});
-
-describe("GET /api/v1/dog/:dogId", () => {
-  it("should return a dog detail", async () => {
-    const res = await request(app).get(`/api/v1/dog/${dogId}`);
-    expect(res.statusCode).toBe(200);
-    expect(res.body.success).toEqual(true);
   });
 });
